@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema de Pontos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔥 Jornada Contra Recaídas 🔥</h1>
+      <p class="subtitle">Motivado por Paramore & Motionless in White</p>
+    </header>
+
+    <nav>
+      <button onclick="showTab('main')">🏠 Início</button>
+      <button onclick="showTab('conquistas')">🏆 Conquistas</button>
+    </nav>
+
+    <div id="main-tab" class="tab active">
+      <div class="score-panel">
+        <h2>Pontos: <span id="score">0</span></h2>
+        <div class="score-buttons">
+          <button onclick="addPoint()">+1 Ponto</button>
+          <button class="reset" onclick="resetScore()">Resetar</button>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <h3>Progresso</h3>
+        <progress id="progressBar" value="0" max="100"></progress>
+      </div>
+
+      <div class="quote">
+        “It's just a spark, but it's enough to keep me going.” – Paramore (Last Hope)
+      </div>
+
+      <textarea id="journal" placeholder="Escreva aqui como você está se sentindo hoje..."></textarea>
+    </div>
+
+    <div id="conquistas-tab" class="tab">
+      <h2>Conquistas Desbloqueadas</h2>
+      <ul id="achievements">
+        <li class="locked">🔒 10 Pontos - "Decode o começo" (Paramore)</li>
+        <li class="locked">🔒 50 Pontos - "Another Life desbloqueada" (Motionless in White)</li>
+        <li class="locked">🔒 100 Pontos - "Turn It Off? Nunca mais." (Paramore)</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
