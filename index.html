@@ -1,75 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sistema de Pontos - Jornada</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Sistema de Pontos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Sistema de Pontos</h1>
-    </header>
-
+  <header>
+    <h1>Sistema de Pontos</h1>
     <nav>
-      <button onclick="showTab('progresso')">Progresso</button>
+      <button onclick="showTab('pontuacao')">Pontuação</button>
       <button onclick="showTab('conquistas')">Conquistas</button>
       <button onclick="showTab('diario')">Diário</button>
-      <button onclick="showTab('pontuacoes')">Pontuação</button>
+      <button onclick="showTab('tabela')">Tabela de Pontos</button>
     </nav>
+  </header>
 
-    <div id="progresso" class="tab active">
-      <div class="score-panel">
-        <h2>Pontos: <span id="score">0</span></h2>
-        <button onclick="addPoints(10)">+10 Pontos</button>
-        <button onclick="resetPoints()" class="reset">Resetar</button>
+  <main>
+    <section id="pontuacao" class="tab active">
+      <h2>Pontuação Atual: <span id="score">0</span></h2>
+      <progress id="progressBar" value="0" max="100"></progress>
+      <div class="buttons">
+        <button onclick="addPoints(1)">Acordei no horário</button>
+        <button onclick="addPoints(2)">Fiz exercício</button>
+        <button onclick="addPoints(3)">Evitei gatilhos</button>
+        <button onclick="addPoints(5)">Tive 1 dia limpo</button>
+        <button onclick="addPoints(10)">Completei 1 semana</button>
       </div>
+      <button onclick="resetPoints()">Resetar Pontos</button>
+    </section>
 
-      <div class="progress-section">
-        <h3>Progresso</h3>
-        <progress id="progressBar" value="0" max="100"></progress>
-      </div>
-    </div>
-
-    <div id="conquistas" class="tab">
+    <section id="conquistas" class="tab">
       <h2>Conquistas</h2>
-      <ul id="achievements">
-        <li id="a1" class="locked">🎯 Primeiros Passos - 10 Pontos</li>
-        <li id="a2" class="locked">🔥 Resistência Inicial - 30 Pontos</li>
-        <li id="a3" class="locked">⚡ Persistência - 50 Pontos</li>
-        <li id="a4" class="locked">🎸 Referência Paramore - 80 Pontos</li>
-        <li id="a5" class="locked">🕶️ Espírito Motionless - 100 Pontos</li>
+      <ul>
+        <li id="a1" class="locked">Primeiro passo - Inspirado por Paramore</li>
+        <li id="a2" class="locked">Persistência - Inspirado por Motionless in White</li>
+        <li id="a3" class="locked">Resistência Semanal</li>
+        <li id="a4" class="locked">Força Interior</li>
+        <li id="a5" class="locked">Renascido</li>
       </ul>
-    </div>
+    </section>
 
-    <div id="diario" class="tab">
-      <h2>Diário de Progresso</h2>
-      <textarea id="journal" placeholder="Escreva como foi seu dia..."></textarea>
-      <button onclick="saveJournal()">Salvar</button>
+    <section id="diario" class="tab">
+      <h2>Registro Diário</h2>
+      <textarea id="journal" placeholder="Escreva aqui como foi seu dia..."></textarea>
+      <button onclick="saveJournal()">Salvar Entrada</button>
       <div id="savedJournal"></div>
-    </div>
+    </section>
 
-    <div id="pontuacoes" class="tab">
-      <div id="score-guide">
-        <h3>Guia de Pontuação Diária</h3>
-        <ul>
-          <li>✅ Dia sem recaída: <strong>+10 pontos</strong></li>
-          <li>🧠 Meditação / Reflexão: <strong>+5 pontos</strong></li>
-          <li>📵 Evitou redes sociais/gatilhos: <strong>+5 pontos</strong></li>
-          <li>📓 Escreveu no diário: <strong>+3 pontos</strong></li>
-          <li>💪 Exercícios físicos: <strong>+5 pontos</strong></li>
-          <li>🎧 Escutou música para se acalmar (Paramore / MIW): <strong>+2 pontos</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="quote">
-      “It's just a spark, but it's enough to keep me going.” — *Last Hope*, Paramore
-    </div>
-  </div>
+    <section id="tabela" class="tab">
+      <h2>Tabela de Pontos</h2>
+      <ul>
+        <li>Acordei no horário: +1 ponto</li>
+        <li>Fiz exercício: +2 pontos</li>
+        <li>Evitei gatilhos: +3 pontos</li>
+        <li>Dia limpo: +5 pontos</li>
+        <li>1 semana limpo: +10 pontos</li>
+      </ul>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
