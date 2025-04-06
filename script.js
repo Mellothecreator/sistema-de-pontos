@@ -1,98 +1,63 @@
-/* style.css */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #1e1e2f, #2b2b3d);
-  color: #f0f0f0;
-  margin: 0;
-  padding: 0;
+// script.js
+let score = 0;
+
+function addPoints(points) {
+  score += points;
+  document.getElementById('score').textContent = score;
+  updateProgress();
+  checkAchievements();
 }
 
-header {
-  background-color: #27293d;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+function resetPoints() {
+  if (confirm("Tem certeza que deseja resetar seus pontos?")) {
+    score = 0;
+    document.getElementById('score').textContent = score;
+    updateProgress();
+    resetAchievements();
+  }
 }
 
-h1 {
-  margin: 0;
-  font-size: 2rem;
+function updateProgress() {
+  const progress = document.getElementById('progressBar');
+  progress.value = Math.min(score, 100);
 }
 
-nav button {
-  background: #ff3366;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin: 10px 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
+function checkAchievements() {
+  if (score >= 10) unlock('a1');
+  if (score >= 30) unlock('a2');
+  if (score >= 50) unlock('a3');
+  if (score >= 80) unlock('a4');
+  if (score >= 100) unlock('a5');
 }
 
-nav button:hover {
-  background: #ff6688;
+function unlock(id) {
+  const achievement = document.getElementById(id);
+  if (achievement && achievement.classList.contains('locked')) {
+    achievement.classList.remove('locked');
+    achievement.innerHTML += " ✅";
+  }
 }
 
-main {
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
+function resetAchievements() {
+  ['a1', 'a2', 'a3', 'a4', 'a5'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.add('locked');
+    el.innerHTML = el.innerHTML.replace(' ✅', '');
+  });
 }
 
-.tab {
-  display: none;
-  animation: fadeIn 0.5s ease-in-out;
+function showTab(tabId) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
 }
 
-.tab.active {
-  display: block;
+function saveJournal() {
+  const journal = document.getElementById('journal').value;
+  const output = document.getElementById('savedJournal');
+  const entry = document.createElement('div');
+  entry.textContent = `Entrada: ${journal}`;
+  output.appendChild(entry);
+  document.getElementById('journal').value = '';
 }
 
-progress {
-  width: 100%;
-  height: 25px;
-  margin: 15px 0;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.buttons button {
-  background-color: #4caf50;
-  border: none;
-  margin: 5px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.buttons button:hover {
-  background-color: #66bb6a;
-}
-
-.locked {
-  opacity: 0.5;
-}
-
-textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  resize: vertical;
-  margin-bottom: 10px;
-}
-
-#savedJournal div {
-  background: #333;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 8px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
