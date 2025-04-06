@@ -3,52 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sistema de Pontos</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Sistema de Pontos - Jornada</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🔥 Jornada Contra Recaídas 🔥</h1>
-      <p class="subtitle">Motivado por Paramore & Motionless in White</p>
+      <h1>Sistema de Pontos</h1>
     </header>
 
     <nav>
-      <button onclick="showTab('main')">🏠 Início</button>
-      <button onclick="showTab('conquistas')">🏆 Conquistas</button>
+      <button onclick="showTab('progresso')">Progresso</button>
+      <button onclick="showTab('conquistas')">Conquistas</button>
+      <button onclick="showTab('diario')">Diário</button>
+      <button onclick="showTab('pontuacoes')">Pontuação</button>
     </nav>
 
-    <div id="main-tab" class="tab active">
+    <div id="progresso" class="tab active">
       <div class="score-panel">
         <h2>Pontos: <span id="score">0</span></h2>
-        <div class="score-buttons">
-          <button onclick="addPoint()">+1 Ponto</button>
-          <button class="reset" onclick="resetScore()">Resetar</button>
-        </div>
+        <button onclick="addPoints(10)">+10 Pontos</button>
+        <button onclick="resetPoints()" class="reset">Resetar</button>
       </div>
 
       <div class="progress-section">
         <h3>Progresso</h3>
         <progress id="progressBar" value="0" max="100"></progress>
       </div>
-
-      <div class="quote">
-        “It's just a spark, but it's enough to keep me going.” – Paramore (Last Hope)
-      </div>
-
-      <textarea id="journal" placeholder="Escreva aqui como você está se sentindo hoje..."></textarea>
     </div>
 
-    <div id="conquistas-tab" class="tab">
-      <h2>Conquistas Desbloqueadas</h2>
+    <div id="conquistas" class="tab">
+      <h2>Conquistas</h2>
       <ul id="achievements">
-        <li class="locked">🔒 10 Pontos - "Decode o começo" (Paramore)</li>
-        <li class="locked">🔒 50 Pontos - "Another Life desbloqueada" (Motionless in White)</li>
-        <li class="locked">🔒 100 Pontos - "Turn It Off? Nunca mais." (Paramore)</li>
+        <li id="a1" class="locked">🎯 Primeiros Passos - 10 Pontos</li>
+        <li id="a2" class="locked">🔥 Resistência Inicial - 30 Pontos</li>
+        <li id="a3" class="locked">⚡ Persistência - 50 Pontos</li>
+        <li id="a4" class="locked">🎸 Referência Paramore - 80 Pontos</li>
+        <li id="a5" class="locked">🕶️ Espírito Motionless - 100 Pontos</li>
       </ul>
+    </div>
+
+    <div id="diario" class="tab">
+      <h2>Diário de Progresso</h2>
+      <textarea id="journal" placeholder="Escreva como foi seu dia..."></textarea>
+      <button onclick="saveJournal()">Salvar</button>
+      <div id="savedJournal"></div>
+    </div>
+
+    <div id="pontuacoes" class="tab">
+      <div id="score-guide">
+        <h3>Guia de Pontuação Diária</h3>
+        <ul>
+          <li>✅ Dia sem recaída: <strong>+10 pontos</strong></li>
+          <li>🧠 Meditação / Reflexão: <strong>+5 pontos</strong></li>
+          <li>📵 Evitou redes sociais/gatilhos: <strong>+5 pontos</strong></li>
+          <li>📓 Escreveu no diário: <strong>+3 pontos</strong></li>
+          <li>💪 Exercícios físicos: <strong>+5 pontos</strong></li>
+          <li>🎧 Escutou música para se acalmar (Paramore / MIW): <strong>+2 pontos</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote">
+      “It's just a spark, but it's enough to keep me going.” — *Last Hope*, Paramore
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
